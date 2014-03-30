@@ -9,4 +9,19 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-CoachNetwork::Application.config.secret_key_base = '955cff105a10defbaab701e18143eb9c6d049c0affd0ed844fa305c4fd2db03a6b77a6e4b803860702befde233ac64dfb2f673093957150d07bdbf383cd427b4'
+require 'securerandom'
+
+def secure_token
+  token_file = Rails.root.join('.secret')
+  if File.exist?(token_file)
+    # Use the existing token.
+    File.read(token_file).chomp
+  else
+    # Generate a new token and store it in token_file.
+    token = SecureRandom.hex(64)
+    File.write(token_file, token)
+    token
+  end
+end
+
+CoachNetwork::Application.config.secret_key_base = secure_token
