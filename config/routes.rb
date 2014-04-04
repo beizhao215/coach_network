@@ -1,5 +1,7 @@
 CoachNetwork::Application.routes.draw do
+  get "coaches/new"
   match '/about', to:'static_pages#about', via: 'get'
+  match '/coach_signup', to: 'coaches#new', via: 'get'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
