@@ -1,5 +1,5 @@
 CoachNetwork::Application.routes.draw do
-  get "coaches/new"
+  resources :coaches
   match '/about', to:'static_pages#about', via: 'get'
   match '/coach_signup', to: 'coaches#new', via: 'get'
   
