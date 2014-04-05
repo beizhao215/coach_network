@@ -10,6 +10,7 @@ class CoachesController < ApplicationController
   def create
     @coach = Coach.new(coach_params)    
     if @coach.save
+      sign_in @coach
       flash[:success] = "Welcome to the Coach Network!"
       redirect_to @coach
     else

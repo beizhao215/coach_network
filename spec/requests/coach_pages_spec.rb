@@ -40,6 +40,14 @@ describe "Coach pages" do
       it "should create a coach" do
         expect { click_button submit }.to change(Coach, :count).by(1)
       end
+      
+      describe "after saving the user" do
+        before { click_button submit }
+        let(:coach) { Coach.find_by(email: 'coach@example.com') }
+
+        it { should have_link('Sign out') }
+        it { should have_selector('div.alert.alert-success', text: 'Welcome') }
+      end
     end
   end
 end

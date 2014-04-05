@@ -13,6 +13,7 @@ describe Coach do
   it { should respond_to(:password_digest) }
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
+  it { should respond_to(:remember_token) }  
   it { should respond_to(:phone) }
   it { should respond_to(:subject) }
   it { should respond_to(:location) }
@@ -95,5 +96,10 @@ describe Coach do
   describe "when password doesn't match confirmation" do
     before { @coach.password_confirmation = "mismatch" }
     it { should_not be_valid }
+  end
+  
+  describe "remember token" do
+    before { @coach.save }
+    its(:remember_token) { should_not be_blank }
   end
 end
