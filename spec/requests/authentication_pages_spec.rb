@@ -24,19 +24,86 @@ describe "AuthenticationPages" do
     
     describe "with valid information" do
       let(:coach) { FactoryGirl.create(:coach) }
-      before do
-        fill_in "Email",    with: coach.email.upcase
-        fill_in "Password", with: coach.password
-        click_button "Sign in"
-      end
+      before { sign_in coach }
 
+      it { should have_link('Coaches',       href: coaches_path) }
       it { should have_link('Profile',     href: coach_path(coach)) }
+      it { should have_link('Settings',    href: edit_coach_path(coach)) }
       it { should have_link('Sign out',    href: signout_path) }
       it { should_not have_link('Sign in', href: signin_path) }
       
       describe "followed by signout" do
         before { click_link "Sign out" }
         it { should have_link('Sign in') }
+      end
+    end
+  end
+  
+  describe "authorization" do
+
+    describe "for non-signed-in coaches" do
+      let(:coach) { FactoryGirl.create(:coach) }
+
+      describe "in the Coaches controller" do
+
+        describe "visiting the edit page" do
+          before { visit edit_coach_path(coach) }
+          it { should have_content('Sign in') }
+        end
+
+        describe "submitting to the update action" do
+          before { patch coach_path(coach) }
+          specify { expect(response).to redirect_to(signin_path) }
+        end
+        
+        describe "visiting the coach index" do
+          before { visit coaches_path }
+          it { should have_content('Sign in') }
+        end
+      end
+      
+      describe "when attempting to visit a protected page" do
+        before do
+          visit edit_coach_path(coach)
+          fill_in "Email",    with: coach.email
+          fill_in "Password", with: coach.password
+          click_button "Sign in"
+        end
+
+        describe "after signing in" do
+
+          it "should render the desired protected page" do
+            expect(page).to have_content('Update your profile')
+          end
+        end
+      end
+    end
+    
+    describe "as wrong coach" do
+      let(:coach) { FactoryGirl.create(:coach) }
+      let(:wrong_coach) { FactoryGirl.create(:coach, email: "wrong@example.com") }
+      before { sign_in coach, no_capybara: true }
+
+      describe "submitting a GET request to the Coaches#edit action" do
+        before { get edit_coach_path(wrong_coach) }
+        specify { expect(response).to redirect_to(root_url) }
+      end
+
+      describe "submitting a PATCH request to the Coaches#update action" do
+        before { patch coach_path(wrong_coach) }
+        specify { expect(response).to redirect_to(root_url) }
+      end
+    end
+    
+    describe "as non-admin user" do
+      let(:coach) { FactoryGirl.create(:coach) }
+      let(:non_admin) { FactoryGirl.create(:coach) }
+
+      before { sign_in non_admin, no_capybara: true }
+
+      describe "submitting a DELETE request to the Coaches#destroy action" do
+        before { delete coach_path(coach) }
+        specify { expect(response).to redirect_to(root_path) }
       end
     end
   end

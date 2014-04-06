@@ -1,0 +1,37 @@
+<h1>Update your profile</h1>
+
+<div>
+  <div>
+    <%= form_for(@coach) do |f| %>
+      <%= render 'shared/error_messages' %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+	  
+      <%= f.label :subject %>
+      <%= f.text_field :subject %>
+	  
+      <%= f.label :location %>
+      <%= f.text_field :location %>
+	  
+      <%= f.label :self_introduction %>
+      <%= f.text_field :self_introduction %>
+	  
+      <%= f.label :course_introduction %>
+      <%= f.text_field :course_introduction %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+
+      <%= f.label :password_confirmation, "Confirm Password" %>
+      <%= f.password_field :password_confirmation %>
+
+      <%= f.submit "Save changes" %>
+    <% end %>
+
+    
+  </div>
+</div>
