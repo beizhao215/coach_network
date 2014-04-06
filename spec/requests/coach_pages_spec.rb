@@ -4,6 +4,43 @@ describe "Coach pages" do
 
   subject { page }
   
+  describe "index" do
+    let(:coach) { FactoryGirl.create(:coach) }
+    before(:each) do
+      sign_in coach
+      visit coaches_path
+    end
+
+    it { should have_content('All coaches') }
+
+    it "should list each coach" do
+      Coach.all.each do |coach|
+        expect(page).to have_selector('li', text: coach.name)
+      end
+    end
+    
+    describe "delete links" do
+
+      it { should_not have_link('delete') }
+
+      describe "as an admin coach" do
+        let(:admin) { FactoryGirl.create(:admin) }
+        before do
+          sign_in admin
+          visit coaches_path
+        end
+
+        it { should have_link('delete', href: coach_path(Coach.first)) }
+        it "should be able to delete another coach" do
+          expect do
+            click_link('delete', match: :first)
+          end.to change(Coach, :count).by(-1)
+        end 
+        it { should_not have_link('delete', href: coach_path(admin)) }
+      end
+    end
+  end
+  
   describe "profile page" do
     let(:coach) { FactoryGirl.create(:coach) }
     before { visit coach_path(coach) }
@@ -48,6 +85,40 @@ describe "Coach pages" do
         it { should have_link('Sign out') }
         it { should have_selector('div.alert.alert-success', text: 'Welcome') }
       end
+    end
+  end
+  
+  describe "edit" do
+    let(:coach) { FactoryGirl.create(:coach) }
+    before do
+      sign_in coach
+      visit edit_coach_path(coach)
+    end
+
+    describe "page" do
+      it { should have_content("Update your profile") }
+    end
+
+    describe "with invalid information" do
+      before { click_button "Save changes" }
+      it { should have_content('error') }
+    end
+    
+    describe "with valid information" do
+      let(:new_name)  { "New Name" }
+      let(:new_email) { "new@example.com" }
+      before do
+        fill_in "Name",             with: new_name
+        fill_in "Email",            with: new_email
+        fill_in "Password",         with: coach.password
+        fill_in "Confirm Password", with: coach.password
+        click_button "Save changes"
+      end
+
+      it { should have_selector('div.alert.alert-success') }
+      it { should have_link('Sign out', href: signout_path) }
+      specify { expect(coach.reload.name).to  eq new_name }
+      specify { expect(coach.reload.email).to eq new_email }
     end
   end
 end

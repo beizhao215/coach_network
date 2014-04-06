@@ -1,0 +1,17 @@
+<h1>All coaches</h1>
+
+<%= will_paginate %>
+
+<ul>
+  <% @coaches.each do |coach| %>
+    <li>
+      <%= link_to coach.name, coach %>
+	  <% if current_coach.admin? && !current_coach?(coach) %>
+	    | <%= link_to "delete", coach, method: :delete,
+	                                   data: { confirm: "You sure?" } %>
+	  <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<%= will_paginate %>
