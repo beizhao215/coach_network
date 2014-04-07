@@ -108,3 +108,23 @@ footer {
 .copy{font-size:12px;color:#737373;text-align:center;margin-top:30px;margin-bottom:90px}
 #footerLogo{position:relative;top:-40px;left:250px;background:#f6f6f6;width:400px;text-align:center}
 main-logobottom{display:block;text-indent:-9999px;margin:0 auto}
+
+.chalkboard-wrapper{
+  background:#377755 image-url("chalkboard.jpg") top center repeat-y;
+  background-size: cover;
+  position: relative;
+  margin-top:-19px;
+  text-align: center;
+  h1{color:#fff;font-size:85px;line-height:72px;font-weight:bold;text-align:center;letter-spacing:-3px;padding-top:4%;margin-top:0}
+  h2{font-size:48px;color:#fff;text-align:center;font-weight:normal;margin-top:15px}
+}
+
+.chalkboard-headline{font-size:23px;color:#fff;text-align:center;padding:0 10px;line-height:25px}
+
+#accountInfo{color:#fff;background-color:#000;background-color:rgba(0,0,0,.5);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000,endColorstr=#99000000);-ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)"}
+
+legend{color:#fff}
+
+.gray-wrapper{background:#f5f5f5}
+.inner-container{padding-top:40px;padding-bottom:70px}
+.tutor-wrapper{min-height:200px}
