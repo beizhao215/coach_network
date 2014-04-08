@@ -1,9 +1,12 @@
 CoachNetwork::Application.routes.draw do
+  get "students/new"
   resources :coaches
   resources :sessions, only: [:new, :create, :destroy]
   
   match '/about', to:'static_pages#about', via: 'get'
   match '/coach_signup', to: 'coaches#new', via: 'get'
+  match '/signup',  to: 'students#new',    via: 'get'
+  
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
   
