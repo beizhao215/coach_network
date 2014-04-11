@@ -6,9 +6,11 @@
   <% @coaches.each do |coach| %>
     <li>
       <%= link_to coach.name, coach %>
-	  <% if current_coach.admin? && !current_coach?(coach) %>
-	    | <%= link_to "delete", coach, method: :delete,
+	  <% if !current_coach.nil? %>
+	  	 <% if current_coach.admin? && !current_coach?(coach) %>
+	    	<%= link_to "delete", coach, method: :delete,
 	                                   data: { confirm: "You sure?" } %>
+		 <% end %>							   
 	  <% end %>
     </li>
   <% end %>

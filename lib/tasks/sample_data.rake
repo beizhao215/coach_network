@@ -8,9 +8,19 @@ namespace :db do
                  admin: true )
     99.times do |n|
       name  = Faker::Name.name
-      email = "example-#{n+1}@coachnetwork.com"
+      email = "coach-#{n+1}@coachnetwork.com"
       password  = "password"
       Coach.create!(name: name,
+                   email: email,
+                   password: password,
+                   password_confirmation: password)
+    end
+    
+    99.times do |n|
+      name  = Faker::Name.name
+      email = "student-#{n+1}@coachnetwork.com"
+      password  = "password"
+      Student.create!(name: name,
                    email: email,
                    password: password,
                    password_confirmation: password)

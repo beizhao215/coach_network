@@ -95,6 +95,44 @@ describe "AuthenticationPages" do
       end
     end
     
+    describe "for non-signed-in students" do
+      let(:student) { FactoryGirl.create(:student) }
+
+      describe "in the Students controller" do
+
+        describe "visiting the edit page" do
+          before { visit edit_student_path(student) }
+          it { should have_content('Sign in') }
+        end
+
+        describe "submitting to the update action" do
+          before { patch student_path(student) }
+          specify { expect(response).to redirect_to(signin_path) }
+        end
+        
+        describe "visiting the coach index" do
+          before { visit coaches_path }
+          it { should have_content('Sign in') }
+        end
+      end
+      
+      describe "when attempting to visit a protected page" do
+        before do
+          visit edit_student_path(student)
+          fill_in "Email",    with: student.email
+          fill_in "Password", with: student.password
+          click_button "Sign in"
+        end
+
+        describe "after signing in" do
+
+          it "should render the desired protected page" do
+            expect(page).to have_content('Update your profile')
+          end
+        end
+      end
+    end
+    
     describe "as wrong coach" do
       let(:coach) { FactoryGirl.create(:coach) }
       let(:wrong_coach) { FactoryGirl.create(:coach, email: "wrong@example.com") }
@@ -107,6 +145,22 @@ describe "AuthenticationPages" do
 
       describe "submitting a PATCH request to the Coaches#update action" do
         before { patch coach_path(wrong_coach) }
+        specify { expect(response).to redirect_to(root_url) }
+      end
+    end
+    
+    describe "as wrong student" do
+      let(:student) { FactoryGirl.create(:student) }
+      let(:wrong_student) { FactoryGirl.create(:student, email: "wrong@example.com") }
+      before { sign_in student, no_capybara: true }
+
+      describe "submitting a GET request to the Students#edit action" do
+        before { get edit_student_path(wrong_student) }
+        specify { expect(response).to redirect_to(root_url) }
+      end
+
+      describe "submitting a PATCH request to the Students#update action" do
+        before { patch student_path(wrong_student) }
         specify { expect(response).to redirect_to(root_url) }
       end
     end
