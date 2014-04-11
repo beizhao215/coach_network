@@ -22,13 +22,29 @@ describe "AuthenticationPages" do
       end
     end
     
-    describe "with valid information" do
+    describe "coach with valid information" do
       let(:coach) { FactoryGirl.create(:coach) }
       before { sign_in coach }
 
       it { should have_link('Coaches',       href: coaches_path) }
       it { should have_link('Profile',     href: coach_path(coach)) }
       it { should have_link('Settings',    href: edit_coach_path(coach)) }
+      it { should have_link('Sign out',    href: signout_path) }
+      it { should_not have_link('Sign in', href: signin_path) }
+      
+      describe "followed by signout" do
+        before { click_link "Sign out" }
+        it { should have_link('Sign in') }
+      end
+    end
+    
+    describe "student with valid information" do
+      let(:student) { FactoryGirl.create(:student) }
+      before { sign_in student }
+
+      it { should have_link('Coaches',       href: coaches_path) }
+      it { should have_link('Profile',     href: student_path(student)) }
+      it { should have_link('Settings',    href: edit_student_path(student)) }
       it { should have_link('Sign out',    href: signout_path) }
       it { should_not have_link('Sign in', href: signin_path) }
       

@@ -9,4 +9,12 @@ FactoryGirl.define do
       admin true
     end
   end
+  
+  factory :student do
+    sequence(:name)  { |n| "Student #{n}" }  
+    sequence(:email) { |n| "student_#{n}@example.com"}
+    password "foobar"
+    password_confirmation "foobar"
+  end
+  
 end
