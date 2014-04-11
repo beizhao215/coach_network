@@ -99,4 +99,9 @@ describe Student do
       specify { expect(student_for_invalid_password).to be_false }
     end
   end
+  
+  describe "remember token" do
+    before { @student.save }
+    its(:remember_token) { should_not be_blank }
+  end
 end
