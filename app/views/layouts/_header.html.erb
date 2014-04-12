@@ -8,16 +8,16 @@
           <li><%= link_to "About", about_path %></li>
           <% if signed_in? %>
             <li><%= link_to "Coaches", coaches_path %></li>
-            <li>
-              <a href="#"><b>Account></b></a>
-              <ul>
-				<% if coach_signed_in? %>
+            <li id="fat-menu" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+		<% if coach_signed_in? %>
                 	<li><%= link_to "Profile", current_coach %></li>
                 	<li><%= link_to "Settings", edit_coach_path(current_coach) %></li>
                 <% elsif student_signed_in? %>
                 	<li><%= link_to "Profile", current_student %></li>
                 	<li><%= link_to "Settings", '#' %></li>
-				<% end %>
+		<% end %>
                 <li>
                   <%= link_to "Sign out", signout_path, method: "delete" %>
                 </li>
