@@ -3,8 +3,15 @@
 <head>
   <title><%= full_title(yield(:title)) %></title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag    "jquery-ui" %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "jquery-ui" %>
   <%= csrf_meta_tags %>
+ <script>
+ $(function() {
+    $( "#tabs" ).tabs();
+ });
+ </script>
 </head>
 <body>
 
