@@ -1,6 +1,6 @@
 class StaticPagesController < ApplicationController
   def home
-    @coaches = Coach.all.shuffle[0..4]
+    @coaches = Coach.all.shuffle[0..5]
   end
 
   def about
