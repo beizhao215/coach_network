@@ -10,6 +10,7 @@
             <p class='chalkboard-headline'>We help thousands of students get better sports skills. You're next.</p>
         </div>
 
+      <% if !signed_in? %>
         <div class="col-md-4 col-sm-4 col-md-offset-1 col-sm-offset-1 signup-form" id="accountInfo">
 
             <legend>Join Now!</legend>
@@ -21,6 +22,7 @@
                  </div>
             
         </div>
+      <% end %>
     </div>
 </div>
 </div>
