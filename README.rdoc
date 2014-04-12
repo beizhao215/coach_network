@@ -1,3 +1,20 @@
 == README
 
 The Coach Network provides a platform where coach and students meet.
+
+
+
+Coach has many groups
+
+group belongs to one coach
+
+group has many students
+
+student has many groups
+
+coach has many students through groups
+
+
+
+
+group has many messages

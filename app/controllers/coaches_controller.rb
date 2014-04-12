@@ -1,5 +1,5 @@
 class CoachesController < ApplicationController
-  before_action :signed_in_coach, only: [:index, :edit, :update]
+  before_action :signed_in_coach, only: [:edit, :update]
   before_action :correct_coach,   only: [:edit, :update]
   before_action :admin_coach,     only: :destroy
   

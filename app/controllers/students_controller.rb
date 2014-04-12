@@ -1,4 +1,8 @@
 class StudentsController < ApplicationController
+  before_action :signed_in_student, only: [:edit, :update]
+  before_action :correct_student,   only: [:edit, :update]
+  
+  
   def new
     @student = Student.new
   end
@@ -18,9 +22,35 @@ class StudentsController < ApplicationController
     end
   end
   
+  def edit
+  end
+  
+  def update
+    if @student.update_attributes(student_params)
+      flash[:success] = "Profile updated"
+      redirect_to @student
+    else
+      render 'edit'
+    end
+  end
+  
   private
   
   def student_params
     params.require(:student).permit(:name,:email,:password,:password_confirmation)
+  end
+  
+  # Before filters
+
+  def signed_in_student
+    unless signed_in?
+      store_location
+      redirect_to signin_url, notice: "Please sign in."
+    end
+  end
+  
+  def correct_student
+    @student = Student.find(params[:id])
+    redirect_to(root_path) unless current_student?(@student)
   end
 end
