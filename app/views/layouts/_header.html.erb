@@ -16,13 +16,8 @@
                 	<li><%= link_to "Settings", edit_coach_path(current_coach) %></li>
                 <% elsif student_signed_in? %>
                 	<li><%= link_to "Profile", current_student %></li>
-<<<<<<< HEAD
                 	<li><%= link_to "Settings", '#' %></li>
 		<% end %>
-=======
-                	<li><%= link_to "Settings", edit_student_path(current_student) %></li>
-				<% end %>
->>>>>>> upstream/master
                 <li>
                   <%= link_to "Sign out", signout_path, method: "delete" %>
                 </li>
