@@ -1,5 +1,5 @@
 class CoachesController < ApplicationController
-  before_action :signed_in_coach, only: [:edit, :update]
+  before_action :signed_in_user, only: [:edit, :update]
   before_action :correct_coach,   only: [:edit, :update]
   before_action :admin_coach,     only: :destroy
   
@@ -14,6 +14,7 @@ class CoachesController < ApplicationController
   
   def show
     @coach = Coach.find(params[:id])
+    @groups = @coach.groups
   end
   
   def create
@@ -50,17 +51,13 @@ class CoachesController < ApplicationController
 
       def coach_params
         params.require(:coach).permit(:name, :email, :password,
-                                     :password_confirmation)
+                                     :password_confirmation, :phone, :subject, :location,
+                                     :self_introduction, :course_introduction)
       end
       
       # Before filters
 
-      def signed_in_coach
-        unless signed_in?
-          store_location
-          redirect_to signin_url, notice: "Please sign in." 
-        end
-      end
+      
       
       def correct_coach
         @coach = Coach.find(params[:id])

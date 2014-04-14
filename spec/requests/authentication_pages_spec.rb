@@ -93,6 +93,19 @@ describe "AuthenticationPages" do
           end
         end
       end
+      
+      describe "in the Groups controller" do
+
+        describe "submitting to the create action" do
+          before { post groups_path }
+          specify { expect(response).to redirect_to(signin_path) }
+        end
+
+        describe "submitting to the destroy action" do
+          before { delete group_path(FactoryGirl.create(:group)) }
+          specify { expect(response).to redirect_to(signin_path) }
+        end
+      end
     end
     
     describe "for non-signed-in students" do

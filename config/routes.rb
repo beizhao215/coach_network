@@ -3,6 +3,7 @@ CoachNetwork::Application.routes.draw do
   resources :coaches
   resources :students
   resources :sessions, only: [:new, :create, :destroy]
+  resources :groups, only: [:create, :destroy]
   
   match '/about', to:'static_pages#about', via: 'get'
   match '/contact', to:'static_pages#contact', via: 'get'

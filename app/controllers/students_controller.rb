@@ -1,5 +1,5 @@
 class StudentsController < ApplicationController
-  before_action :signed_in_student, only: [:edit, :update]
+  before_action :signed_in_user, only: [:edit, :update]
   before_action :correct_student,   only: [:edit, :update]
   
   
@@ -42,12 +42,7 @@ class StudentsController < ApplicationController
   
   # Before filters
 
-  def signed_in_student
-    unless signed_in?
-      store_location
-      redirect_to signin_url, notice: "Please sign in."
-    end
-  end
+  
   
   def correct_student
     @student = Student.find(params[:id])

@@ -1,3 +1,13 @@
-show coach information
 
-<%= @coach.name %>, <%= @coach.email %>
+<br><br><br>show coach information
+<div>
+	<%= @coach.name %>, <%= @coach.email %>, <%= @coach.subject %>, 
+	<%= @coach.location %>, <%= @coach.self_introduction %>, <%= @coach.course_introduction %>
+	<div class = "span6">
+		<% if @coach.groups.any? %>
+		    <div class="groups">
+		      <%= render @groups %>
+		    </div>
+		<% end %>
+	</div>
+</div>

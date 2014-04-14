@@ -1,4 +1,6 @@
 class Coach < ActiveRecord::Base
+  has_many :groups, dependent: :destroy
+  
   before_save { self.email = email.downcase }
   before_create :create_remember_token
   

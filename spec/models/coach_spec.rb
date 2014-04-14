@@ -21,6 +21,8 @@ describe Coach do
   it { should respond_to(:course_introduction) }
   it { should respond_to(:authenticate) }
   it { should respond_to(:admin) }
+  it { should respond_to(:groups) }
+  
   
   
   
@@ -113,5 +115,21 @@ describe Coach do
   describe "remember token" do
     before { @coach.save }
     its(:remember_token) { should_not be_blank }
+  end
+  
+  describe "group associations" do
+    before { @coach.save }
+    let!(:group) do
+      FactoryGirl.create(:group, coach:@coach)
+    end
+    
+    it "should destroy associated groups" do
+      groups = @coach.groups.to_a
+      @coach.destroy
+      expect(groups).not_to be_empty
+      groups.each do |group|
+        expect(Group.where(id: group.id)).to be_empty
+      end
+    end
   end
 end

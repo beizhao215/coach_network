@@ -43,9 +43,16 @@ describe "Coach pages" do
   
   describe "profile page" do
     let(:coach) { FactoryGirl.create(:coach) }
+    let!(:group1) { FactoryGirl.create(:group, coach: coach, name: "football", description: "play football together!") }
+    
     before { visit coach_path(coach) }
 
     it { should have_content(coach.name) }
+    
+    describe "groups" do
+      it { should have_content(group1.name) }
+      it { should have_content(group1.description) }
+    end
   end
 
   describe "signup page" do

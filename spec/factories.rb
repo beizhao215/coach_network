@@ -17,4 +17,9 @@ FactoryGirl.define do
     password_confirmation "foobar"
   end
   
+  factory :group do
+    name "Tennis"
+    description "Test group"
+    coach
+  end
 end

@@ -11,10 +11,22 @@ describe Group do
   
   it { should respond_to(:description) }
   it { should respond_to(:coach_id) }
+  it { should respond_to(:coach) }
+  its(:coach) { should eq coach }
   it { should be_valid }
   
   describe "when coach_id is not present" do
     before { @group.coach_id = nil }
+    it { should_not be_valid }
+  end
+  
+  describe "with blank name" do
+    before { @group.name = " " }
+    it { should_not be_valid }
+  end
+
+  describe "with blank description" do
+    before { @group.description = " " }
     it { should_not be_valid }
   end
   
