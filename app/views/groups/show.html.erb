@@ -3,3 +3,17 @@
 show group page. will include group info and group messages <br>
 
 <%= @group.name %>, <%= @group.description %>
+
+<% if current_coach.id == @group.coach_id %>
+	<%= link_to "edit", edit_group_path(@group)%>
+<% end %>
+<br><br>
+<br>
+<br>
+<br>
+
+<% if current_coach.id == @group.coach_id %>
+	<%= link_to "delete", @group, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+<% end %>
+								  
