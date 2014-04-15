@@ -3,3 +3,11 @@
 show student page. will include student info and group registered <br>
 
 <%= @student.name %>, <%= @student.email %>
+<br>
+<% if @enrollments.any? %>
+	<% @enrollments.each do |enrollment| %>
+		<% @group = Group.find_by(id:enrollment.group_id) %>
+		<%= link_to @group.name, group_path(@group) %>
+		<br>
+	<% end %>
+<% end %>

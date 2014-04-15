@@ -12,6 +12,8 @@ describe Group do
   it { should respond_to(:description) }
   it { should respond_to(:coach_id) }
   it { should respond_to(:coach) }
+  it { should respond_to(:enrollments) }
+  
   its(:coach) { should eq coach }
   it { should be_valid }
   

@@ -30,5 +30,14 @@ namespace :db do
                    password: password,
                    password_confirmation: password)
     end
+    
+    
+    students = Student.all
+    n = 1
+    students.each do |student|
+      group = Group.find_by(id:n)
+      student.enroll!(group)
+      n = n+1
+    end
   end
 end

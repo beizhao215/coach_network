@@ -9,6 +9,8 @@ class StudentsController < ApplicationController
   
   def show
     @student = Student.find(params[:id])
+    @enrollments = @student.enrollments
+   # @groups = Group.find_by(id:@enrollments.group_id)
   end
   
   def create

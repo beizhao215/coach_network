@@ -1,4 +1,6 @@
 class Student < ActiveRecord::Base
+  has_many :enrollments, dependent: :destroy
+  
   before_save { self.email = email.downcase }
   before_create :create_remember_token
   
@@ -22,6 +24,18 @@ class Student < ActiveRecord::Base
 
   def Student.hash(token)
     Digest::SHA1.hexdigest(token.to_s)
+  end
+  
+  def enroll!(group)
+    enrollments.create!(group_id:group.id)
+  end
+  
+  def enrolling?(group)
+    enrollments.find_by(group_id:group.id)
+  end
+  
+  def drop!(group)
+    enrollments.find_by(group_id:group.id).destroy
   end
 
   private

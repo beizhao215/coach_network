@@ -1,0 +1,4 @@
+<%= form_for(current_student.enrollments.find_by(group_id: @group.id),
+             html: { method: :delete }) do |f| %>
+  <%= f.submit "Drop", class: "btn btn-large" %>
+<% end %>

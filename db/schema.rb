@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140411222920) do
+ActiveRecord::Schema.define(version: 20140414205436) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "coaches", force: true do |t|
     t.string   "name"
@@ -30,6 +33,17 @@ ActiveRecord::Schema.define(version: 20140411222920) do
 
   add_index "coaches", ["email"], name: "index_coaches_on_email", unique: true, using: :btree
   add_index "coaches", ["remember_token"], name: "index_coaches_on_remember_token", using: :btree
+
+  create_table "enrollments", force: true do |t|
+    t.integer  "group_id"
+    t.integer  "student_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "enrollments", ["group_id", "student_id"], name: "index_enrollments_on_group_id_and_student_id", unique: true, using: :btree
+  add_index "enrollments", ["group_id"], name: "index_enrollments_on_group_id", using: :btree
+  add_index "enrollments", ["student_id"], name: "index_enrollments_on_student_id", using: :btree
 
   create_table "groups", force: true do |t|
     t.string   "name"
