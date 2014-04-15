@@ -4,6 +4,8 @@ class GroupsController < ApplicationController
   
 
   def index
+    @groups = Group.paginate(page: params[:page])
+    
   end
 
   def new
@@ -53,7 +55,7 @@ class GroupsController < ApplicationController
       
       def correct_coach
         @group = Group.find(params[:id])
-        redirect_to(root_path) unless current_coach.id == @group.coach_id
+        redirect_to(root_path) unless (current_coach.id == @group.coach_id || current_coach.admin?)
       end
       
 end

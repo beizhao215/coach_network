@@ -1,0 +1,22 @@
+<% provide(:title, 'Group') %>
+
+<h1>All groups</h1>
+
+<%= will_paginate %>
+
+<ul>
+  <% @groups.each do |group| %>
+    <li>
+      <%= link_to group.name, group %>
+	  <%= Coach.find_by(id:group.coach_id).name %>
+	  <% if !current_coach.nil? %>
+	  	 <% if current_coach.admin? %>
+	    	<%= link_to "delete", group, method: :delete,
+	                                   data: { confirm: "You sure?" } %>
+		 <% end %>							   
+	  <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<%= will_paginate %>
