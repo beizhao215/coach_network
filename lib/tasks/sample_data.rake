@@ -39,5 +39,16 @@ namespace :db do
       student.enroll!(group)
       n = n+1
     end
+    
+    groups = Group.all
+    groups.each do |group|
+      content = Faker::Lorem.sentence(5)
+      group.posts.create!(content: content, coach_id: group.coach.id)
+      if group.enrollments.any?
+        group.enrollments.each do |enrollment|
+          group.posts.create!(content: content, student_id: enrollment.student.id)
+        end
+      end
+    end
   end
 end

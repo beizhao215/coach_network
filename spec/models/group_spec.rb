@@ -13,6 +13,8 @@ describe Group do
   it { should respond_to(:coach_id) }
   it { should respond_to(:coach) }
   it { should respond_to(:enrollments) }
+  it { should respond_to(:posts) }
+  
   
   its(:coach) { should eq coach }
   it { should be_valid }

@@ -107,4 +107,15 @@ describe "GroupPages" do
           end.to change(coach.groups, :count).by(-1)
     end
   end
+  
+  describe "post" do
+    let(:group) { FactoryGirl.create(:group, coach: coach, name:"test", description: "desc")}
+    before do
+      @post = group.posts.create!(content:"hello", coach_id: coach.id)
+      visit group_path(group) 
+    end
+    describe "show posts" do
+      it { should have_content(@post.content) }
+    end
+  end
 end

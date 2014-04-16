@@ -22,6 +22,8 @@ describe Coach do
   it { should respond_to(:authenticate) }
   it { should respond_to(:admin) }
   it { should respond_to(:groups) }
+  it { should respond_to(:posts) }
+  
   
   
   

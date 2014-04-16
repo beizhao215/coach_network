@@ -22,4 +22,10 @@ FactoryGirl.define do
     description "Test group"
     coach
   end
+  
+  factory :post do
+    content "Lorem ipsum"
+    coach
+    group
+  end
 end

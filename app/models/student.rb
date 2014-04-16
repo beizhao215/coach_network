@@ -1,5 +1,7 @@
 class Student < ActiveRecord::Base
   has_many :enrollments, dependent: :destroy
+  has_many :posts, dependent: :destroy
+  
   
   before_save { self.email = email.downcase }
   before_create :create_remember_token
