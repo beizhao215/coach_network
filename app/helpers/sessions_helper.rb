@@ -31,6 +31,8 @@ module SessionsHelper
     @current_student ||= Student.find_by(remember_token: remember_token)
   end
   
+ 
+  
   def current_coach?(coach)
     coach == current_coach
   end

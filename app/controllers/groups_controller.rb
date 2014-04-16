@@ -24,7 +24,10 @@ class GroupsController < ApplicationController
   
   def show
     @group = Group.find(params[:id])
+    $current_group = @group
+    @post = @group.posts.build if signed_in?
     @posts = @group.posts.paginate(page: params[:page])
+    
   end
   
   def edit

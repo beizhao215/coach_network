@@ -22,7 +22,20 @@ show group page. will include group info and group messages <br>
 	<% end %>
 <% end %>
 
-<br><br><br>	
+<br>
+
+<% if student_signed_in? %>
+	<% if current_student.enrolling?(@group) %>
+		<%= render "shared/post_form" %>
+	<% end %>
+<% end %>
+<% if coach_signed_in? %>
+	<% if current_coach.id == @group.coach.id %>
+		<%= render "shared/post_form" %>
+	<% end %>
+<% end %>
+
+<br><br>	
 <div>
     <% if @group.posts.any? %>
       <ol class="posts">

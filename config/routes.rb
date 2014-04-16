@@ -5,6 +5,8 @@ CoachNetwork::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :groups
   resources :enrollments, only: [:create, :destroy]
+  resources :posts, only: [:create, :destroy]
+  
   
   
   match '/about', to:'static_pages#about', via: 'get'

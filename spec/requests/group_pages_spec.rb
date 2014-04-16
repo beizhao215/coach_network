@@ -118,4 +118,42 @@ describe "GroupPages" do
       it { should have_content(@post.content) }
     end
   end
+  
+  describe "post authentication" do
+    let(:group) { FactoryGirl.create(:group, coach: coach, name:"test", description: "desc")}
+    let(:enrolled_student) { FactoryGirl.create(:student) }
+    let(:visitor_student) { FactoryGirl.create(:student) }
+    
+    describe "enrolled student can see post button" do
+      before do
+        sign_in enrolled_student
+        enrolled_student.enroll!(group)
+        visit group_path(group)
+        fill_in 'post_content', with: "Lorem ipsum" 
+      end
+      it { should have_button("Create Post") }
+      it "should can make post" do
+        expect { click_button "Create Post" }.to change(group.posts, :count).by(1)
+      end
+    end
+    
+    describe "coach of the group can see post button" do
+      before do
+        visit group_path(group)
+        fill_in 'post_content', with: "Lorem ipsum" 
+      end
+      it { should have_button("Create Post") }
+      it "should can make post" do
+        expect { click_button "Create Post" }.to change(group.posts, :count).by(1)
+      end
+    end
+    
+    describe "visitor student cannot see post button" do
+      before do
+        sign_in visitor_student
+        visit group_path(group)
+      end
+      it { should_not have_content("Create Post") }
+    end
+  end
 end
