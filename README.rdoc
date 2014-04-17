@@ -1,20 +1,15 @@
-== README
+//TODO
 
-The Coach Network provides a platform where coach and students meet.
+1. student可以搜索group
 
+2. coach可以拉人，踢人
 
+3. 用户可以互发私信
 
-Coach has many groups
+4. student可以给coach留review
 
-group belongs to one coach
+5. coach可以群发邮件
 
-group has many students
+6. coach可以上传图片，显示图片
 
-student has many groups
-
-coach has many students through groups
-
-
-
-
-group has many messages
+7. group添加schedule属性
