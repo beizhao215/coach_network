@@ -3,7 +3,11 @@ CoachNetwork::Application.routes.draw do
   resources :coaches
   resources :students
   resources :sessions, only: [:new, :create, :destroy]
-  resources :groups
+  resources :groups do
+    collection do
+      get :search
+    end
+  end
   resources :enrollments, only: [:create, :destroy]
   resources :posts, only: [:create, :destroy]
   

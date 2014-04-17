@@ -11,3 +11,10 @@ show student page. will include student info and group registered <br>
 		<br>
 	<% end %>
 <% end %>
+<br><br><br>
+<%= form_tag search_groups_path, :method => :get do %>
+<p>
+  <%= text_field_tag :query, params[:query] %> 
+  <%= submit_tag "Search!" %>
+</p>
+<% end %>

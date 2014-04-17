@@ -7,6 +7,19 @@ class GroupsController < ApplicationController
     @groups = Group.paginate(page: params[:page])
     
   end
+  
+  def search
+    @groups = Group.search do
+      fulltext params[:query]
+      paginate(:per_page => 100)
+      
+    end.results
+
+    respond_to do |format|
+      format.html { render :action => "index" }
+      format.xml  { render :xml => @groups }
+    end
+  end
 
   def new
     @group = current_coach.groups.build
@@ -21,6 +34,8 @@ class GroupsController < ApplicationController
       render 'new'
     end
   end
+  
+  
   
   def show
     @group = Group.find(params[:id])

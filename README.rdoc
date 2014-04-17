@@ -1,6 +1,6 @@
 //TODO
 
-1. student可以搜索group
+1. student可以搜索group   DONE---result paginate not working
 
 2. coach可以拉人，踢人
 
