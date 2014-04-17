@@ -36,7 +36,24 @@ show group page. will include group info and group messages <br>
 <% end %>
 
 <br><br>	
-
+<div>
+	<%= @group.enrollments.count %> student in this group.
+    <% if @group.enrollments.any? %>
+		<% @group.enrollments.each do |enrollment| %>
+	        <li class="student">
+			<%= link_to Student.find_by(id:enrollment.student_id).name,
+				 student_path(Student.find_by(id:enrollment.student_id))%>
+			<% if coach_signed_in? %>
+				<% if current_coach.id == @group.coach.id %>
+			    	<%= link_to "Unenroll", enrollment, method: :delete,
+			                                   data: { confirm: "You sure?" } %>
+					
+				<% end %>
+			<% end %>
+	        </li>      
+		<% end %>      
+    <% end %>
+</div>
 <br>
 
 <div>
@@ -47,4 +64,5 @@ show group page. will include group info and group messages <br>
       <%= will_paginate @posts %>
     <% end %>
 </div>
-								  
+					
+

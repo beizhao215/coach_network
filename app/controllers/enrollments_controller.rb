@@ -9,7 +9,13 @@ class EnrollmentsController < ApplicationController
 
   def destroy
     @group = Enrollment.find(params[:id]).group
-    current_student.drop!(@group)
-    redirect_to student_path(current_student)
+    if !current_student.nil?
+      current_student.drop!(@group)
+      redirect_to student_path(current_student)
+    elsif !current_coach.nil?
+      Enrollment.find(params[:id]).destroy
+      redirect_to group_path(@group)
+    end
+      
   end
 end

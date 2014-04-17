@@ -42,7 +42,7 @@ class GroupsController < ApplicationController
     $current_group = @group
     @post = @group.posts.build if signed_in?
     @posts = @group.posts.paginate(page: params[:page])
-    
+    @enrollments = @group.enrollments
   end
   
   def edit
