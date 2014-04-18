@@ -1,0 +1,19 @@
+<% provide(:title, 'Messages') %>
+
+<h1>My messages</h1>
+
+<ul>
+  <% @messages.each do |message| %>
+    <li>
+	  From <%= link_to Student.find_by(id:message.student_id).name, 						student_path(Student.find_by(id:message.student_id)) %>
+	  <br>
+      <%= message.title %>
+	  <br>
+      <%= message.content %>
+	  <br>
+  	  Sent <%= time_ago_in_words(message.created_at) %> ago.
+	  
+    </li>
+  <% end %>
+</ul>
+

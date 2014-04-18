@@ -29,7 +29,7 @@ class GroupsController < ApplicationController
     @group = current_coach.groups.build(group_params)
     if @group.save
       flash[:success] = "Group created!"
-      redirect_to current_coach
+      redirect_to group_path(@group)
     else
       render 'new'
     end

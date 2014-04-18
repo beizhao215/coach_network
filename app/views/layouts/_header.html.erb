@@ -16,6 +16,8 @@
 		<% if coach_signed_in? %>
                 	<li><%= link_to "Profile", current_coach %></li>
                 	<li><%= link_to "Settings", edit_coach_path(current_coach) %></li>
+                	<li><%= link_to "Inbox", messages_path %></li>
+					
                 <% elsif student_signed_in? %>
                 	<li><%= link_to "Profile", current_student %></li>
                 	<li><%= link_to "Settings", edit_student_path(current_student) %></li>

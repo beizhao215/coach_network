@@ -28,4 +28,11 @@ FactoryGirl.define do
     coach
     group
   end
+  
+  factory :message do
+    title "message title"
+    content "Lorem ipsum"
+    student
+    coach
+  end
 end

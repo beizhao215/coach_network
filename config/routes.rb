@@ -10,6 +10,7 @@ CoachNetwork::Application.routes.draw do
   end
   resources :enrollments, only: [:create, :destroy]
   resources :posts, only: [:create, :destroy]
+  resources :messages
   
   
   

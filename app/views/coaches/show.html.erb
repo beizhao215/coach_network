@@ -19,3 +19,10 @@
 		<span><%= link_to "Start New Group", new_group_path %></span>
 	<% end %>
 </div>
+
+<div>
+	<% if student_signed_in? %>
+        <p><%= link_to "Send a message to me!", new_message_path, class: "btn btn-primary btn-lg" %>
+	<% end %>
+
+</div>

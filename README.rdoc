@@ -3,7 +3,7 @@
 1. student可以搜索group   DONE---result paginate not working
 	注意在spec_helper.rb中加入config，rspec才能不与solr冲突导致测试失败
 
-2. coach可以踢人
+2. coach可以踢人    DONE
 	group show显示学生列表，coach可以delete学生
 
 

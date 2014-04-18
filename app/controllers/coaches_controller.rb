@@ -15,6 +15,7 @@ class CoachesController < ApplicationController
   def show
     @coach = Coach.find(params[:id])
     @groups = @coach.groups
+    $showed_coach = @coach
   end
   
   def create

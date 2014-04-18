@@ -1,6 +1,7 @@
 class Student < ActiveRecord::Base
   has_many :enrollments, dependent: :destroy
   has_many :posts, dependent: :destroy
+  has_many :messages, dependent: :destroy
   
   
   before_save { self.email = email.downcase }
