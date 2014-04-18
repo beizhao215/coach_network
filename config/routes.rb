@@ -11,6 +11,7 @@ CoachNetwork::Application.routes.draw do
   resources :enrollments, only: [:create, :destroy]
   resources :posts, only: [:create, :destroy]
   resources :messages
+  resources :ratings, only: :update
   
   
   

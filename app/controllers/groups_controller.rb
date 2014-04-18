@@ -43,6 +43,12 @@ class GroupsController < ApplicationController
     @post = @group.posts.build if signed_in?
     @posts = @group.posts.paginate(page: params[:page])
     @enrollments = @group.enrollments
+    if student_signed_in?
+      @rating = Rating.where(group_id: @group.id, student_id: @current_student.id).first
+        unless @rating
+        @rating = Rating.create(group_id: @group.id, student_id: @current_student.id, score: 0)
+        end
+    end
   end
   
   def edit

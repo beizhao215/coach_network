@@ -3,13 +3,13 @@
 1. student可以搜索group   DONE---result paginate not working
 	注意在spec_helper.rb中加入config，rspec才能不与solr冲突导致测试失败
 
-2. coach可以踢人    DONE
+2. coach可以踢人      DONE
 	group show显示学生列表，coach可以delete学生
 
 
-3. 用户可以互发私信
+3. 用户可以互发私信	DONE. only student can send a message to coach
 
-4. student可以给coach留review
+4. student可以给coach留review    DONE. student can rate the group he/she enrolled in.
 
 5. coach可以群发邮件
 

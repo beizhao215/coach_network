@@ -65,4 +65,32 @@ show group page. will include group info and group messages <br>
     <% end %>
 </div>
 					
+<p>Averate rating</p>
+<div id="star"></div>
+<% if student_signed_in? %>
+	<% if current_student.enrolling?(@group) %>
+		<p>Your rating</p>
+		<div id="user_star"></div>
+		<script>
+	    $('#user_star').raty({
+	      score: <%= @rating.score %>,
+	      path: '/assets',
+	      click: function(score, evt) {
+	        $.ajax({
+	          url: '/ratings/' + <%= @rating.id %>,
+	          type: 'PATCH',
+	          data: { score: score }
+	        });
+	      }
+	    });
+		</script>
+	<% end %>
+<% end %>
 
+<script>
+  $('#star').raty({
+    readOnly: true,
+    score: <%= @group.average_rating %>,
+    path: '/assets'
+  });
+</script>

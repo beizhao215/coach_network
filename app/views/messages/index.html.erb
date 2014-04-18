@@ -2,6 +2,7 @@
 
 <h1>My messages</h1>
 
+<p>You have <%= pluralize current_coach.messages.count, "message" %>. </p>
 <ul>
   <% @messages.each do |message| %>
     <li>
