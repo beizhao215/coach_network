@@ -83,7 +83,7 @@ describe "GroupPages" do
       it { should have_content(group.name) }
       it { should have_content(group.description) }
       it { should have_link('edit', href: edit_group_path(group)) }
-      it { should have_link('delete', href: group_path(group)) }
+      it { should have_link('Delete Group', href: group_path(group)) }
       
     end
     
@@ -94,7 +94,7 @@ describe "GroupPages" do
         visit group_path(group)
       end
       it { should_not have_link("edit") }
-      it { should_not have_link("delete") }
+      it { should_not have_link("Delete Group") }
     end
   end
   
@@ -103,7 +103,7 @@ describe "GroupPages" do
     before { visit group_path(group) }
     it "should be able to delete a group" do
       expect do
-        click_link('delete')
+        click_link('Delete Group')
           end.to change(coach.groups, :count).by(-1)
     end
   end

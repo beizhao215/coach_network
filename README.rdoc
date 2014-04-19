@@ -15,4 +15,6 @@
 
 6. coach可以上传图片，显示图片   DONE
 
-7. group添加schedule属性
+7. group添加schedule属性    DONE
+
+8. Provide enroll in group as a service

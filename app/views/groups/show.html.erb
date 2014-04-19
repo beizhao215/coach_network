@@ -2,13 +2,15 @@
 
 show group page. will include group info and group messages <br>
 
-<%= @group.name %>, <%= @group.description %>
+<%= @group.name %><br>
+<%= @group.description %><br>
+<%= @group.schedule %> <br>
 
 <% if coach_signed_in? %>
 	<% if current_coach.id == @group.coach_id %>
 		<%= link_to "edit", edit_group_path(@group)%>
 		<br><br><br><br><br><br>
-		<%= link_to "delete", @group, method: :delete,
+		<%= link_to "Delete Group", @group, method: :delete,
                                   data: { confirm: "You sure?" } %>
 	<% end %>
 <% end %>
