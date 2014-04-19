@@ -11,7 +11,7 @@
 
 4. student可以给coach留review    DONE. student can rate the group he/she enrolled in.
 
-5. coach可以群发邮件
+5. coach可以群发邮件    DONE
 
 6. coach可以上传图片，显示图片   DONE
 

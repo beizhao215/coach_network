@@ -12,6 +12,8 @@ CoachNetwork::Application.routes.draw do
   resources :posts, only: [:create, :destroy]
   resources :messages
   resources :ratings, only: :update
+  resources :emails, only: [:new, :create]
+  
   
   
   
