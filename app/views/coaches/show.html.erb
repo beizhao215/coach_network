@@ -7,6 +7,7 @@
 <div>
 	<%= @coach.name %>, <%= @coach.email %>, <%= @coach.subject %>, 
 	<%= @coach.location %>, <%= @coach.self_introduction %>, <%= @coach.course_introduction %>
+	<%= image_tag @coach.photo.url(:small) %>
 	<div class = "span6">
 		<% if @coach.groups.any? %>
 		    <div class="groups">

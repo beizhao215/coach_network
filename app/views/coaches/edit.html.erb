@@ -4,7 +4,7 @@
 
 <div>
   <div>
-    <%= form_for(@coach) do |f| %>
+    <%= form_for @coach, :html => { :multipart => true }  do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
 
       <%= f.label :name %>
@@ -24,6 +24,9 @@
 	  
       <%= f.label :course_introduction %>
       <%= f.text_field :course_introduction %>
+	  
+	  <%= f.label :photo %>
+	  <%= f.file_field :photo %>
 
       <%= f.label :password %>
       <%= f.password_field :password %>

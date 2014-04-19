@@ -53,7 +53,7 @@ class CoachesController < ApplicationController
       def coach_params
         params.require(:coach).permit(:name, :email, :password,
                                      :password_confirmation, :phone, :subject, :location,
-                                     :self_introduction, :course_introduction)
+                                     :self_introduction, :course_introduction, :photo)
       end
       
       # Before filters

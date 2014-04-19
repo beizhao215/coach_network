@@ -13,6 +13,6 @@
 
 5. coach可以群发邮件
 
-6. coach可以上传图片，显示图片
+6. coach可以上传图片，显示图片   DONE
 
 7. group添加schedule属性

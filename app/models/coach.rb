@@ -2,6 +2,7 @@ class Coach < ActiveRecord::Base
   has_many :groups, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :messages, dependent: :destroy
+  has_attached_file :photo, styles: { small: "300x300>" }
   
   
   before_save { self.email = email.downcase }
@@ -15,6 +16,10 @@ class Coach < ActiveRecord::Base
                     uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password, length: { minimum:6 }
+  validates_attachment :photo, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] }
+  validates_attachment_size :photo, :less_than => 1.megabytes
+  
+  
   
   def Coach.new_remember_token
     SecureRandom.urlsafe_base64

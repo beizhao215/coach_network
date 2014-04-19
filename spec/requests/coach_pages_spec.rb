@@ -114,11 +114,16 @@ describe "Coach pages" do
     describe "with valid information" do
       let(:new_name)  { "New Name" }
       let(:new_email) { "new@example.com" }
+      let(:new_subject) { "tennis" }
+      let(:new_location) { "plano" }
+      
       before do
         fill_in "Name",             with: new_name
         fill_in "Email",            with: new_email
-        fill_in "Password",         with: coach.password
-        fill_in "Confirm Password", with: coach.password
+        fill_in "Subject",          with: new_subject
+        fill_in "Location",         with: new_location
+        fill_in "Password",          with: coach.password
+        fill_in "Confirm Password",         with: coach.password
         click_button "Save changes"
       end
 
@@ -126,6 +131,10 @@ describe "Coach pages" do
       it { should have_link('Sign out', href: signout_path) }
       specify { expect(coach.reload.name).to  eq new_name }
       specify { expect(coach.reload.email).to eq new_email }
+      specify { expect(coach.reload.subject).to eq new_subject }
+      specify { expect(coach.reload.location).to eq new_location }
+      
+      
     end
   end
 end
