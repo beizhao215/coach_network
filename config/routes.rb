@@ -19,7 +19,13 @@ CoachNetwork::Application.routes.draw do
   resources :ratings, only: :update
   resources :emails, only: [:new, :create]
   
-  
+  namespace :api do
+    namespace :v1 do
+      resources :coaches
+      resources :groups
+      resources :enrollments
+    end
+  end
   
   
   match '/about', to:'static_pages#about', via: 'get'
