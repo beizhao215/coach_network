@@ -5,7 +5,17 @@ class CoachesController < ApplicationController
   
   
   def index
-    @coaches = Coach.paginate(page: params[:page])
+    if request.format.to_sym == :html
+      @coaches = Coach.paginate(page: params[:page])
+    else 
+      @coaches = Coach.all
+    end
+    
+    respond_to do |format|
+      format.html { render html:@coaches }
+      format.json { render json:@coaches }
+      format.xml { render xml: @coaches }
+    end
   end
   
   def new

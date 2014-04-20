@@ -4,7 +4,17 @@ class GroupsController < ApplicationController
   
 
   def index
-    @groups = Group.paginate(page: params[:page])
+    if request.format.to_sym == :html
+      @groups = Group.paginate(page: params[:page])
+    else
+      @groups = Group.all
+    end
+    
+    respond_to do |format|
+      format.html { render html:@groups }
+      format.json { render json:@groups }
+      format.xml { render xml: @groups }
+    end
     
   end
   

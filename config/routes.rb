@@ -1,6 +1,11 @@
 CoachNetwork::Application.routes.draw do
   
-  resources :coaches
+  resources :coaches do
+    collection do
+      get 'paginate'
+    end
+  end
+    
   resources :students
   resources :sessions, only: [:new, :create, :destroy]
   resources :groups do
