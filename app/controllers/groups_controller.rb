@@ -85,7 +85,7 @@ class GroupsController < ApplicationController
   private
   
       def group_params
-        params.require(:group).permit(:name,:description, :schedule)
+        params.require(:group).permit(:name,:description,:location, :schedule)
       end
       
       def correct_coach

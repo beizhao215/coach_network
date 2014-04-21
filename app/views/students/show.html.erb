@@ -1,20 +1,22 @@
 <% provide(:title, 'Student') %>
 
-show student page. will include student info and group registered <br>
 
-<%= @student.name %>, <%= @student.email %>
+<div>Welcome, <%= @student.name %>!</div>
 <br>
 <% if @enrollments.any? %>
+	<div>You have enrolled in <%= pluralize @enrollments.count, "group" %></div>
 	<% @enrollments.each do |enrollment| %>
 		<% @group = Group.find_by(id:enrollment.group_id) %>
 		<%= link_to @group.name, group_path(@group) %>
 		<br>
 	<% end %>
+<% else %>
+	<div>You haven't enrolled in any group. Take a look at <%= link_to "all the groups", groups_path %> or search for groups.</div> 
 <% end %>
 <br><br><br>
 <%= form_tag search_groups_path, :method => :get do %>
 <p>
   <%= text_field_tag :query, params[:query] %> 
-  <%= submit_tag "Search!" %>
+  <%= submit_tag "Search for groups!", class: "btn btn-primary btn-lg" %>
 </p>
 <% end %>

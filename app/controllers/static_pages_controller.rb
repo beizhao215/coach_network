@@ -6,7 +6,7 @@ class StaticPagesController < ApplicationController
       redirect_to coach_path(current_coach)
     end
     
-    @coaches = Coach.all.shuffle[0..5]
+    @coaches = Coach.all.shuffle[0..4]
   end
 
   def about

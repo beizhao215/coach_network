@@ -1,9 +1,10 @@
 <% provide(:title, 'Group') %>
 
-show group page. will include group info and group messages <br>
+<%= link_to @group.coach.name, coach_path(@group.coach) %><br>
 
 <%= @group.name %><br>
 <%= @group.description %><br>
+<%= @group.location %> <br>
 <%= @group.schedule %> <br>
 
 <% if coach_signed_in? %>
