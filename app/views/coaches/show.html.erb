@@ -2,22 +2,34 @@
 <% provide(:title, 'Coach') %>
 
 
-
-<div>
-	<%= @coach.name %>, <%= @coach.email %>, <%= @coach.subject %>, 
-	<%= @coach.location %>, <%= @coach.self_introduction %>, <%= @coach.course_introduction %>
-	<%= image_tag @coach.photo.url(:small) %>
-	<div class = "span6">
+<div class="container">
+<div class="row">	
+<div class>
+	<div class=coach_pic><%= image_tag @coach.photo.url(:small) %></div>
+	
+	<div class="coach_name"><%= @coach.name %></div>
+	<div class="coach_subject"><%= @coach.subject %> coach at <%= @coach.location %></div>
+	
+	<div class="overview">Overview:</div>
+	<div class="introduction"><%= @coach.self_introduction %></div>
+	<div class="overview">Course Overview:</div>
+	<div class="introduction"><%= @coach.course_introduction %></div>
+	<div class="coach_text"><%= pluralize @coach.groups.count, "group" %> available:
+	<span id="new_group"><% if current_coach?(@coach) %>
+		<span><%= link_to "Start New Group", new_group_path, class: "btn btn-primary btn-lg" %></span>
+	<% end %></span>
+	</div>
+</div>
+</div>
+</div>
+	<div class = "span8">
 		<% if @coach.groups.any? %>
 		    <div class="groups">
 		      <%= render @groups %>
 		    </div>
 		<% end %>
 	</div>
-	<% if current_coach?(@coach) %>
-		<br><br><br><br>
-		<span><%= link_to "Start New Group", new_group_path %></span>
-	<% end %>
+	
 </div>
 
 <div>

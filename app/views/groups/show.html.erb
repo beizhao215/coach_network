@@ -1,22 +1,22 @@
 <% provide(:title, 'Group') %>
+<div class="groups">
 
-<%= link_to @group.coach.name, coach_path(@group.coach) %><br>
+<div class="coach_name"><%= link_to @group.coach.name, coach_path(@group.coach) %>
+<br><br>
 
-<%= @group.name %><br>
-<%= @group.description %><br>
-<%= @group.location %> <br>
-<%= @group.schedule %> <br>
-
-<% if coach_signed_in? %>
-	<% if current_coach.id == @group.coach_id %>
-		<%= link_to "edit", edit_group_path(@group)%>
-		<br><br><br><br><br><br>
-		<%= link_to "Delete Group", @group, method: :delete,
-                                  data: { confirm: "You sure?" } %>
+<%= @group.name %> &nbsp;&nbsp;&nbsp;&nbsp;<span id="star"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+<span>
+	<% if coach_signed_in? %>
+		<% if current_coach.id == @group.coach_id %>
+			<%= link_to "edit", edit_group_path(@group)%>
+			
+		<% end %>
 	<% end %>
-<% end %>
-
-
+</span>
+</div>
+<div><%= @group.description %></div>
+<div class="group_location"><%= @group.location %> <br>
+<%= @group.schedule %> </div>
 <% if student_signed_in? %>
 	<% if current_student.enrolling?(@group) %>
 		<%= render "drop" %>
@@ -25,22 +25,19 @@
 	<% end %>
 <% end %>
 
-<br>
-
-<% if student_signed_in? %>
-	<% if current_student.enrolling?(@group) %>
-		<%= render "shared/post_form" %>
+</div>
+<div class="student_count">
+	<%= pluralize @group.enrollments.count, "student" %> 
+	<div class="group_email_button">
+		<% if @group.enrollments.any? %>
+		<% if coach_signed_in? %>
+			<% if current_coach.id == @group.coach.id %>
+				<%= link_to "Send group emails", new_email_path, class: "btn btn-primary btn-lg" %>
+			<% end %>
+		<% end %>
 	<% end %>
-<% end %>
-<% if coach_signed_in? %>
-	<% if current_coach.id == @group.coach.id %>
-		<%= render "shared/post_form" %>
-	<% end %>
-<% end %>
-
-<br><br>	
-<div>
-	<%= @group.enrollments.count %> student in this group.
+	</div>
+	<div>
     <% if @group.enrollments.any? %>
 		<% @group.enrollments.each do |enrollment| %>
 	        <li class="student">
@@ -48,7 +45,7 @@
 				 student_path(Student.find_by(id:enrollment.student_id))%>
 			<% if coach_signed_in? %>
 				<% if current_coach.id == @group.coach.id %>
-			    	<%= link_to "Unenroll", enrollment, method: :delete,
+			    	<%= link_to "Unenroll", enrollment, class: "btn btn-primary btn-lg", method: :delete,
 			                                   data: { confirm: "You sure?" } %>
 					
 				<% end %>
@@ -56,34 +53,28 @@
 	        </li>      
 		<% end %>      
     <% end %>
+	</div>
 </div>
+
+
+
+
+
+
+<br><br>	
+
 <br>
 
-<div>
-    <% if @group.enrollments.any? %>
-		<% if coach_signed_in? %>
-			<% if current_coach.id == @group.coach.id %>
-				<%= link_to "Send group emails", new_email_path %>
-			<% end %>
-		<% end %>
-	<% end %>
-</div>
 
-<div>
-    <% if @group.posts.any? %>
-      <ol class="posts">
-        <%= render @posts %>
-      </ol>
-      <%= will_paginate @posts %>
-    <% end %>
-</div>
+
+
 					
-<p>Averate rating</p>
 <div id="star"></div>
+<div>
 <% if student_signed_in? %>
 	<% if current_student.enrolling?(@group) %>
-		<p>Your rating</p>
-		<div id="user_star"></div>
+		<p>Your rating:  </p>
+		<span id="user_star"></span>
 		<script>
 	    $('#user_star').raty({
 	      score: <%= @rating.score %>,
@@ -99,7 +90,25 @@
 		</script>
 	<% end %>
 <% end %>
-
+</div>
+<div class="posts">
+<% if student_signed_in? %>
+	<% if current_student.enrolling?(@group) %>
+		<%= render "shared/post_form" %>
+	<% end %>
+<% end %>
+<% if coach_signed_in? %>
+	<% if current_coach.id == @group.coach.id %>
+		<%= render "shared/post_form" %>
+	<% end %>
+<% end %>
+</div>
+<div>
+    <% if @group.posts.any? %>
+        <%= render @posts %>
+      <%= will_paginate @posts %>
+    <% end %>
+</div>
 <script>
   $('#star').raty({
     readOnly: true,

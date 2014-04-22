@@ -44,10 +44,10 @@
 
               <% @coaches.each do |coach| %>
               <div id="tabs-<%= coach.id %>" style="text-align:left">
-                <h4>Email:</h4>
-                <p><%= coach.email %></p>
                 <h4>Subject:</h4>
                 <p><%= coach.subject %></p>
+                <h4>I'm at:</h4>
+                <p><%= coach.location %></p>
               </div>
               <% end %>
           </div>

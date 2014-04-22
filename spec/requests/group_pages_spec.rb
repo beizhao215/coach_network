@@ -78,29 +78,27 @@ describe "GroupPages" do
   describe "show" do
     let(:group) { FactoryGirl.create(:group, coach: coach, name:"test", description: "desc")}
     
-    describe "should have group name, description, edit, delete" do
+    describe "should have group name, description, edit" do
       before { visit group_path(group) }
       it { should have_content(group.name) }
       it { should have_content(group.description) }
       it { should have_link('edit', href: edit_group_path(group)) }
-      it { should have_link('Delete Group', href: group_path(group)) }
       
     end
     
-    describe "should not see edit/delete link of other coach's group" do
+    describe "should not see edit link of other coach's group" do
       let(:coach2) { FactoryGirl.create(:coach) }
       before do
         sign_in coach2
         visit group_path(group)
       end
       it { should_not have_link("edit") }
-      it { should_not have_link("Delete Group") }
     end
   end
   
   describe "delete" do
     let(:group) { FactoryGirl.create(:group, coach: coach, name:"test", description: "desc")}
-    before { visit group_path(group) }
+    before { visit edit_group_path(group) }
     it "should be able to delete a group" do
       expect do
         click_link('Delete Group')

@@ -6,8 +6,12 @@
 
 <ul>
   <% @coaches.each do |coach| %>
-    <li>
+    <li class="coach">
       <%= link_to coach.name, coach %>
+	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	  <%= coach.subject %>
+	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	  <%= coach.location %>
 	  <% if !current_coach.nil? %>
 	  	 <% if current_coach.admin? && !current_coach?(coach) %>
 	    	<%= link_to "delete", coach, method: :delete,

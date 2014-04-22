@@ -1,4 +1,16 @@
+
 <li>
-  <span><%= link_to group.name, group %></span>
-  <span><%= group.description %></span>
+  <div class="group_name"><%= link_to group.name, group %>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <span class="group_schedule"><%= group.schedule %></span>
+
+  
+  <div class="group_description"><%= truncate(group.description, length:50) %></div>
+  <% if !current_coach.nil? %>
+  	 <% if current_coach.admin? %>
+    	<%= link_to "delete", group, method: :delete,
+                                   data: { confirm: "You sure?" } %>
+	 <% end %>							   
+  <% end %>
+  
 </li>

@@ -1,9 +1,9 @@
-<li>
-  <span class="content"><%= post.content %></span>
+<li class="post">
+  <span class="content"><%= post.content %></span>&nbsp;&nbsp;&nbsp;&nbsp;
   <span class="timestamp">
     Posted by 
 	<% if post.coach_id.nil? %>
-		<%= Student.find_by(id: post.student_id).name %>
+		<%= link_to Student.find_by(id: post.student_id).name, student_path(Student.find_by(id: post.student_id)) %>
 	<% else %>
 		<%= Coach.find_by(id: post.coach_id).name %>
 	<% end %>

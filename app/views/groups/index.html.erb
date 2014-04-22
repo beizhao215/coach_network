@@ -5,18 +5,11 @@
 <%= will_paginate %>
 
 <ul>
-  <% @groups.each do |group| %>
-    <li>
-      <%= link_to group.name, group %>
-	  <%= Coach.find_by(id:group.coach_id).name %>
-	  <% if !current_coach.nil? %>
-	  	 <% if current_coach.admin? %>
-	    	<%= link_to "delete", group, method: :delete,
-	                                   data: { confirm: "You sure?" } %>
-		 <% end %>							   
-	  <% end %>
-    </li>
-  <% end %>
+<% if @groups.any? %>
+    <div class="groups">
+      <%= render @groups %>
+    </div>
+<% end %>
 </ul>
 
 <%= will_paginate %>

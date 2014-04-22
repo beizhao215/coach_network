@@ -2,18 +2,18 @@
 
 <h1>My messages</h1>
 
-<p>You have <%= pluralize current_coach.messages.count, "message" %>. </p>
+<p class="coach_name">You have <%= pluralize current_coach.messages.count, "message" %>. </p>
 <ul>
   <% @messages.each do |message| %>
     <li>
-	  From <%= link_to Student.find_by(id:message.student_id).name, 						student_path(Student.find_by(id:message.student_id)) %>
-	  <br>
-      <%= message.title %>
-	  <br>
-      <%= message.content %>
-	  <br>
-  	  Sent <%= time_ago_in_words(message.created_at) %> ago.
+      <div><span  class="message_title"><%= message.title %></span>  &nbsp;&nbsp;&nbsp;&nbsp;
+  	  <span class="timestamp">Sent by <%= link_to Student.find_by(id:message.student_id).name, 						student_path(Student.find_by(id:message.student_id)) %>
+	  <%= time_ago_in_words(message.created_at) %> ago.
+	  </span>
+	  </div>
+      <div class="content"><%= message.content %></div>
 	  
+  	  
     </li>
   <% end %>
 </ul>

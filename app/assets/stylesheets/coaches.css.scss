@@ -1,3 +1,118 @@
 // Place all the styles related to the Coaches controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "bootstrap";
+
+
+.row{
+}
+
+.coach_info{
+	font-family: Georgia;
+	float:left; 
+ 
+	background-color:#009900; 
+	margin:auto; 
+	text-align:center; 
+	
+}
+
+.coach_name, .coach_subject{
+	font-size:30px;
+	margin-top:15px;
+    border-bottom: 1px solid #e8e8e8;
+    padding: 25px 0;
+}
+
+.coach_text{
+	font-size:30px;
+	margin-top:30px;
+}
+
+.coach_pic{
+	float:right;
+}
+
+.overview{
+	font-size:30px;
+	margin-top:25px;
+}
+
+.introduction{
+	background-color: #fff;
+	color: #444;
+	text-decoration: none;
+	word-spacing: normal;
+	text-align: left;
+	letter-spacing: 0;
+	line-height: 1.5em;
+	font-size: 1.6em;
+	margin-top:20px;
+    border-bottom: 1px solid #e8e8e8;
+    padding: 18px 0;
+	
+}
+
+#new_group{
+	margin-left:200px;
+}
+
+.groups, .coach {
+  list-style: none;
+  margin-top: 20px;
+  font-size: 25px;
+  line-height: 1.5em;
+  .group_description{
+	  margin-top:20px;
+  }
+  .group_schedule{
+	  margin-right:150px;
+  }
+
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+  }
+  
+  
+}
+
+
+.student_count, .student, .content{
+    font-size: 25px;
+	
+	margin-top:30px;
+}
+
+
+
+.posts{
+	margin-top:30px;
+	
+}
+
+.group_email_button{
+	margin-top:10px;
+}
+
+.message_title{
+	font-size:30px;
+	margin-top:15px;
+    
+}
+
+.widebox{
+	height:200px;
+}
+
+.group_location{
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+}
+
+.post{
+	font-size:20px;
+	margin-top:5px;
+    border-bottom: 1px solid #e8e8e8;
+    padding: 10px 0;
+}
