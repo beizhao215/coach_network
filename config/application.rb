@@ -15,6 +15,10 @@ module CoachNetwork
   class Application < Rails::Application
     I18n.enforce_available_locales = true
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
+
+    # Memcache config
+    config.cache_store = :dalli_store
+    config.action_controller.perform_caching = true
     
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers

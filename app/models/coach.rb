@@ -7,7 +7,8 @@ class Coach < ActiveRecord::Base
   
   before_save { self.email = email.downcase }
   before_create :create_remember_token
-  
+  after_save    :expire_contact_all_cache
+  after_destroy :expire_contact_all_cache 
   
   validates :name, presence: true, length: { maximum:50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -33,5 +34,13 @@ class Coach < ActiveRecord::Base
 
     def create_remember_token
       self.remember_token = Coach.hash(Coach.new_remember_token)
+    end
+
+    def self.all_cached
+      Rails.cache.fetch('Coach.all') { all }
+    end
+
+    def expire_contact_all_cache
+      Rails.cache.delete('Coach.all')
     end
 end

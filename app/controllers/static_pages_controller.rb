@@ -6,7 +6,8 @@ class StaticPagesController < ApplicationController
       redirect_to coach_path(current_coach)
     end
     
-    @coaches = Coach.all.shuffle[0..4]
+    @coaches = Coach.all_cached.shuffle[0..4]
+    @stats = Rails.cache.stats.first.last
   end
 
   def about
