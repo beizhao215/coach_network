@@ -12,6 +12,9 @@ gem 'bootstrap-will_paginate', '0.0.9'
 gem 'sunspot_rails'
 gem 'sunspot_solr'
 gem 'paperclip', '~>4.1'
+gem 'therubyracer',  platforms: :ruby
+gem 'dalli'
+gem 'memcachier'
 
 
 group :development, :test do

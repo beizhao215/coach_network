@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
+//= require raty.min
 //= require bootstrap
 //= require turbolinks
 //= require_tree .
-//= require raty.min.js
