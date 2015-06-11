@@ -8,5 +8,9 @@
 		<%= Coach.find_by(id: post.coach_id).name %>
 	<% end %>
 	<%= time_ago_in_words(post.created_at) %> ago.
+  <% from_reply_form ||= nil %>
+  <% unless from_reply_form %>
+    <p><%= link_to 'reply', new_post_path(post.id) %></p>
+  <% end %>
   </span>
 </li>

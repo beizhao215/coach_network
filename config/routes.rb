@@ -15,6 +15,8 @@ CoachNetwork::Application.routes.draw do
   end
   resources :enrollments, only: [:create, :destroy]
   resources :posts, only: [:create, :destroy]
+  get '/posts/new/(:parent_id)', to: 'posts#new', as: :new_post
+  
   resources :messages
   resources :ratings, only: :update
   resources :emails, only: [:new, :create]

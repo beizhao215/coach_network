@@ -3,6 +3,8 @@ class Post < ActiveRecord::Base
   belongs_to :student
   belongs_to :group
   
+  acts_as_tree order: 'created_at DESC'  
+  
   default_scope -> { order('created_at DESC') }
   
   validates :content, presence: true, length: { maximum: 140 }

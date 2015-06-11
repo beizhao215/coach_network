@@ -105,14 +105,7 @@
 </div>
 <div>
     <% if @group.posts.any? %>
-        <%= render @posts %>
-      <%= will_paginate @posts %>
+        <%= posts_tree_for @posts %>
     <% end %>
 </div>
-<script>
-  $('#star').raty({
-    readOnly: true,
-    score: <%= @group.average_rating %>,
-    path: '/assets'
-  });
-</script>
+

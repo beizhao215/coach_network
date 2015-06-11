@@ -49,9 +49,12 @@ class GroupsController < ApplicationController
   
   def show
     @group = Group.find(params[:id])
+    
     $current_group = @group
+    # binding.pry
+    
     @post = @group.posts.build if signed_in?
-    @posts = @group.posts.paginate(page: params[:page])
+    @posts = @group.posts.hash_tree
     @enrollments = @group.enrollments
     if student_signed_in?
       @rating = Rating.where(group_id: @group.id, student_id: @current_student.id).first
